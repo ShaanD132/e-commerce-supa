@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import type { Database } from '@/api/database.types'
-import { Box, Button, ButtonGroup, Container, Flex, Input, useToast } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Container, Flex, Heading, Input, useToast } from '@chakra-ui/react'
 
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
-  const supabase = createClientComponentClient<Database>()
+  const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
   })
@@ -23,6 +23,23 @@ export default function Login() {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     })
+    if (data.session === null) {
+      const signUpPromise = new Promise((resolve, reject) => {
+        if (!error) {
+          setTimeout(() => resolve(200), 700)
+        }
+        else {
+          setTimeout(() => reject(200), 700)
+        }
+      })
+
+      toast.promise(signUpPromise, {
+        success: { title: 'Confirm Email', description: "Check your email", colorScheme: 'orange'},
+        error: { title: 'Failed to Sign Up', description: "Try again later", colorScheme: 'red'},
+        loading: { title: 'Signing Up', colorScheme: 'blue'},
+      })
+    }
+
     router.refresh()
   }
 
@@ -66,8 +83,10 @@ export default function Login() {
   }
 
   return (
-    <Container mt={20}>
+    <Container mt={5}>
+      <Heading as="h1" fontFamily="Helvetica">Log In / Sign Up</Heading>
       <Input name="email"
+      mt={4}
       onChange={(e) => setEmail(e.target.value)}
       value={email}
       variant="flushed"
@@ -87,7 +106,7 @@ export default function Login() {
       />
       <Box mt={7}>
         <Flex>
-          <Button onClick={handleSignIn} colorScheme="blue" mx={3}>Sign in</Button>
+          <Button onClick={handleSignIn} colorScheme="blue" mx={3} color="black">Sign in</Button>
           <Button onClick={handleSignUp} colorScheme="badgeDeepGreen" color="white" mx={3}>Sign up</Button>
         </Flex>
       </Box>

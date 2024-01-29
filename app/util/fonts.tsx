@@ -6,7 +6,7 @@ export function Fonts() {
       styles={`
         /* latin */
         @font-face {
-          font-family: 'Geist';
+          font-family: 'Overused-Grotesk';
           src: url('fonts/OverusedGrotesk-SemiBold.otf') format("opentype")
         }
         `}

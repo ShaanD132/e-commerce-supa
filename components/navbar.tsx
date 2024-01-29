@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export default function Navbar() {
-  const supabase = createClientComponentClient<Database>()
+  const supabase = createClientComponentClient<Database>({isSingleton: true})
   const [logText, setLogText] = useState("")
   const toast = useToast({position: "top"})
   const router = useRouter()
@@ -27,7 +27,6 @@ export default function Navbar() {
   }, [])
 
   const buttonF = async () => {
-    console.log('hi')
     const { data: { session } } = await supabase.auth.getSession();
 
     if (session?.user) {
@@ -49,21 +48,21 @@ export default function Navbar() {
   return(
     <Container maxW="container.xl" overflow="hidden">
     <Flex pt={5} fontSize={{base: "15px", md: "18px", lg:"22px"}} position="fixed" backdropFilter='blur(10px)' borderBottom={3} maxW="container.xl" zIndex={20} width="100%" direction="row">
-      <Flex fontFamily="Geist" >
+      <Flex fontFamily="Overused-Grotesk" >
         <Center>
-        <Link href="/" mr={8} pb={5}>Home</Link>
+        <Link href="/" mr={{base: 3, lg:8}} pb={5}>Home</Link>
         </Center>
 
         <Center>
-        <Link href="/products" mr={8} pb={5}>Products</Link>
+        <Link href="/products" mr={{base: 3, lg:8}} pb={5}>Products</Link>
         </Center>
 
         <Center>
-        <Link href="/about" mr={8} pb={5}>About</Link>
+        <Link href="/about" mr={{base: 3, lg:8}} pb={5}>About</Link>
         </Center>
 
         <Center>
-        <Link href="/contact" mr={8} pb={5}>Contact</Link>
+        <Link href="/contact" mr={{base: 3, lg:8}} pb={5}>Contact</Link>
         </Center>
       </Flex>
 
@@ -72,11 +71,16 @@ export default function Navbar() {
       <Flex>
       <Center>
         <Link href="#" mr={4} pb={5}>
-          <Image src="images/cart.png" alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
+          <Center>
+
+          <Button colorScheme="badgeBlue" color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
+              <Image src="images/cart.png" alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
+          </Button>
+          </Center>
         </Link>
       </Center>
       <Center>
-      <Button mr={5} mb={5} colorScheme="myPink" color="white" textAlign="center" onClick={buttonF}>
+      <Button mr={5} mb={5} colorScheme="myPink" color="black" textAlign="center" onClick={buttonF} fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
         {logText}
       </Button>
       </Center>

@@ -32,13 +32,13 @@ export default function Navbar() {
     if (session?.user) {
       await supabase.auth.signOut()
 
-      const signOutPromise = new Promise((resolve, reject) => {
+      const LogOutPromise = new Promise((resolve, reject) => {
         setTimeout(() => resolve(200), 700)
       })
-      toast.promise(signOutPromise, {
-        success: { title: 'Signed Out', colorScheme: 'green', duration: 500},
-        error: { title: 'Failed to Sign Out', colorScheme: 'red'},
-        loading: { title: 'Signing Out', colorScheme: 'cyan'},
+      toast.promise(LogOutPromise, {
+        success: { title: 'Logged Out', colorScheme: 'green', duration: 500},
+        error: { title: 'Failed to Log Out', colorScheme: 'red'},
+        loading: { title: 'Log Out', colorScheme: 'cyan'},
         })
     }
     setTimeout(() => router.push("/about"), 500)

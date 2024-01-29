@@ -43,7 +43,7 @@ export default function Login() {
     router.refresh()
   }
 
-  const handleSignIn = async () => {
+  const handleLogIn = async () => {
     let success = false
 
     await supabase.auth.signInWithPassword({
@@ -62,9 +62,9 @@ export default function Login() {
       })
 
       toast.promise(signInPromise, {
-        success: { title: 'Signed In', colorScheme: 'green'},
-        error: { title: 'Failed to Sign In', colorScheme: 'red'},
-        loading: { title: 'Signing In', colorScheme: 'cyan'},
+        success: { title: 'Logged In', colorScheme: 'green'},
+        error: { title: 'Failed to Log In', colorScheme: 'red'},
+        loading: { title: 'Logging In', colorScheme: 'cyan'},
       })
     }
     else {
@@ -73,9 +73,9 @@ export default function Login() {
       })
 
       toast.promise(signInPromise, {
-        success: { title: 'Signed In', colorScheme: 'green', duration: 500},
-        error: { title: 'Failed to Sign In', colorScheme: 'red'},
-        loading: { title: 'Signing In', colorScheme: 'cyan'},
+        success: { title: 'Logged In', colorScheme: 'green', duration: 500},
+        error: { title: 'Failed to Log In', colorScheme: 'red'},
+        loading: { title: 'Logging In', colorScheme: 'cyan'},
       })
 
     }
@@ -106,7 +106,7 @@ export default function Login() {
       />
       <Box mt={7}>
         <Flex>
-          <Button onClick={handleSignIn} colorScheme="blue" mx={3} color="black">Sign in</Button>
+          <Button onClick={handleLogIn} colorScheme="blue" mx={3} color="black">Log in</Button>
           <Button onClick={handleSignUp} colorScheme="badgeDeepGreen" color="white" mx={3}>Sign up</Button>
         </Flex>
       </Box>

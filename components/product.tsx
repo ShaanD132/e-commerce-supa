@@ -1,7 +1,8 @@
 "use client"
 import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, Center, useToast, Text, Flex} from "@chakra-ui/react"
 import { InfoOutlineIcon, PlusSquareIcon, SmallAddIcon } from "@chakra-ui/icons"
-import { ProductType } from "@/api/types"
+import { ProductType, supabase } from "@/api/types"
+import { useCallback, useEffect, useState } from "react"
 
 interface ProductProps {
   Product: ProductType
@@ -14,6 +15,7 @@ function Product(props: ProductProps) {
     position: 'top',
   })
   const qty = (props.Product.quantity != null) ? props.Product.quantity : 0
+  const [imageUrl, setImageUrl] = useState("")
 
   function getTypeColor(type: string | null) {
     for (let i = 0; i < 3; i++) {
@@ -24,10 +26,20 @@ function Product(props: ProductProps) {
     return "gray"
   }
 
+  const getImageUrl = useCallback(async () => {
+    const {data} = await supabase.storage.from("prod_images").getPublicUrl("prod_" + props.Product.id + "." + props.Product.image)
+    setImageUrl(data.publicUrl)
+
+  }, [])
+
+  useEffect(() => {
+    getImageUrl()
+  }, [getImageUrl])
+
   return(
     <Box boxShadow="lg" maxW={{base:"15em", lg:"sm"}} borderRadius="md">
       <Box pb={3}>
-        <Image src={props.Product.image as string} borderRadius="md" alt={props.Product.name}/>
+        <Image src={imageUrl} borderRadius="md" alt={props.Product.name}/>
       </Box>
 
       <Box pt={2} pb={4} px={5}>

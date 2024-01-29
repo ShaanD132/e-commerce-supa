@@ -1,9 +1,8 @@
 import { Database } from "@/api/database.types";
-import { User, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Center, Link, Container, Flex, Spacer, Image, Button, useToast,} from "@chakra-ui/react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Center, Link, Container, Flex, Spacer, Image, Button, useToast, Avatar,} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
 
 export default function Navbar() {
   const supabase = createClientComponentClient<Database>({isSingleton: true})
@@ -72,13 +71,19 @@ export default function Navbar() {
       <Center>
         <Link href="#" mr={4} pb={5}>
           <Center>
-
           <Button colorScheme="badgeBlue" color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
-              <Image src="images/cart.png" alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
+              <Image src= {"/images/cart.png"} alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
           </Button>
           </Center>
         </Link>
       </Center>
+
+      <Center>
+      <Link mr={5} mb={5} color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="link" href="/profile">
+        <Avatar name = "Shaan Dussoye" src="" size="sm"/>
+      </Link>
+      </Center>
+
       <Center>
       <Button mr={5} mb={5} colorScheme="myPink" color="black" textAlign="center" onClick={buttonF} fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
         {logText}

@@ -7,7 +7,7 @@ export function Fonts() {
         /* latin */
         @font-face {
           font-family: 'Overused-Grotesk';
-          src: url('fonts/OverusedGrotesk-SemiBold.otf') format("opentype")
+          src: url('/fonts/OverusedGrotesk-SemiBold.otf') format("opentype")
         }
         `}
     />

@@ -15,13 +15,13 @@ export default  function Products() {
     } else {
       setProducts(data)
       setLoading(false)
-      console.log(data)
     }
   }, [])
 
   useEffect(() => {
     fetcher()
   }, [fetcher])
+
 
   return (
     <Container maxW="100%" overflow="hidden">

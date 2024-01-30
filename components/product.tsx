@@ -3,14 +3,16 @@ import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, 
 import { InfoOutlineIcon, PlusSquareIcon, SmallAddIcon } from "@chakra-ui/icons"
 import { ProductType, supabase } from "@/api/types"
 import { useCallback, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface ProductProps {
-  Product: ProductType
+  Product: ProductType,
 }
 
 function Product(props: ProductProps) {
   const types = ["Podcast", "Book", "Tech"]
   const colors = ["badgeDeepGreen", "badgePurple", "badgeBlue"]
+  const router = useRouter()
   const toast = useToast({
     position: 'top',
   })
@@ -89,7 +91,12 @@ function Product(props: ProductProps) {
             })
           }}
           >Add to Cart</Button>
-          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2}>View Details</Button>
+          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2}
+          onClick = {() => {
+            
+            router.push("/products/" + props.Product.id)
+          }}
+          >View Details</Button>
         </ButtonGroup>
         </Center>
       </Box>

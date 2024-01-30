@@ -9,7 +9,7 @@ export default  function Products() {
   const [isLoading, setLoading] = useState(true)
 
   const fetcher = useCallback(async () => {
-    const {data, error} = await supabase.from('products').select("*")
+    const {data, error} = await supabase.from('products').select("*").order('id')
     if (error) {
       console.log("failed", error)
     } else {

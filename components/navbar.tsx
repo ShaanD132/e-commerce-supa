@@ -39,8 +39,11 @@ export default function Navbar() {
         error: { title: 'Failed to Log Out', colorScheme: 'red'},
         loading: { title: 'Log Out', colorScheme: 'cyan'},
         })
+      setTimeout(() => router.push("/"), 500)
     }
-    setTimeout(() => router.push("/about"), 500)
+    else {
+      setTimeout(() => router.push("/login"), 500)
+    }
   }
 
 

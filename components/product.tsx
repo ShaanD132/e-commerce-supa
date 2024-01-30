@@ -68,14 +68,23 @@ function Product(props: ProductProps) {
         <Center>
         <ButtonGroup spacing={{base: 3, lg: 6}} pt={3} zIndex={0}>
           <Button leftIcon={<PlusSquareIcon />} colorScheme="myBlack" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
-          onClick={() => {
-            const addToCartPromise = new Promise((resolve, reject) => {
-              setTimeout(() => resolve(200), 1000)
-            })
+          onClick={async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            let addToCartPromise = new Promise((resolve, reject) => {})
+            if (session?.user) {
+              addToCartPromise = new Promise((resolve, reject) => {
+                setTimeout(() => resolve(200), 1000)
+              })
+            }
+            else {
+              addToCartPromise = new Promise((resolve, reject) => {
+                setTimeout(() => reject(200), 1000)
+              })
+            }
 
             toast.promise(addToCartPromise, {
               success: { title: 'Added to Cart', colorScheme: 'green'},
-              error: { title: 'Promise rejected', colorScheme: 'red'},
+              error: { title: 'Please Log In', colorScheme: 'orange'},
               loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
             })
           }}

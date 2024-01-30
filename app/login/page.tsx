@@ -40,7 +40,7 @@ export default function Login() {
       })
     }
 
-    router.refresh()
+    setTimeout(() => router.push("/"), 1000)
   }
 
   const handleLogIn = async () => {
@@ -79,7 +79,7 @@ export default function Login() {
       })
 
     }
-    setTimeout(() => router.refresh(), 1000)
+    setTimeout(() => router.push("/"), 1000)
   }
 
   return (

@@ -1,9 +1,11 @@
 "use client"
 import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, Center, useToast, Text, Flex} from "@chakra-ui/react"
 import { InfoOutlineIcon, PlusSquareIcon, SmallAddIcon } from "@chakra-ui/icons"
-import { ProductType, supabase } from "@/api/types"
+import { ProductType} from "@/api/types"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { Database } from "@/api/database.types"
 
 interface ProductProps {
   Product: ProductType,
@@ -13,6 +15,7 @@ function Product(props: ProductProps) {
   const types = ["Podcast", "Book", "Tech"]
   const colors = ["badgeDeepGreen", "badgePurple", "badgeBlue"]
   const router = useRouter()
+  const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
   })
@@ -71,7 +74,7 @@ function Product(props: ProductProps) {
         <ButtonGroup spacing={{base: 3, lg: 6}} pt={3} zIndex={0}>
           <Button leftIcon={<PlusSquareIcon />} colorScheme="myBlack" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
           onClick={async () => {
-            const { data: { session } } = await supabase.auth.getSession();
+            const { data: {session}} = await supabase.auth.getSession();
             let addToCartPromise = new Promise((resolve, reject) => {})
             if (session?.user) {
               addToCartPromise = new Promise((resolve, reject) => {
@@ -93,7 +96,6 @@ function Product(props: ProductProps) {
           >Add to Cart</Button>
           <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2}
           onClick = {() => {
-            
             router.push("/products/" + props.Product.id)
           }}
           >View Details</Button>

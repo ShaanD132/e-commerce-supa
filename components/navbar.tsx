@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Navbar() {
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const [logText, setLogText] = useState("")
+  const [userName, setUserName] = useState("")
   const toast = useToast({position: "top"})
   const router = useRouter()
 
@@ -14,11 +15,18 @@ export default function Navbar() {
     const getData = async () => {
       const { data: { session } } = await supabase.auth.getSession();
 
+      const {data: userData} = await supabase.from("users").select("*").eq("email", session?.user.email as string)
       if (session?.user) {
         setLogText("Log Out")
       }
       else {
         setLogText("Log In")
+      }
+      if (userData != null && userData[0] != null) {
+        setUserName(userData[0].name)
+      }
+      else {
+        setUserName("")
       }
     }
 
@@ -83,7 +91,7 @@ export default function Navbar() {
 
       <Center>
       <Link mr={5} mb={5} color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="link" href="/profile">
-        <Avatar name = "Shaan Dussoye" src="" size="sm"/>
+        <Avatar name = {userName} src="" size="sm" bg="#4D9DE0" color="white"/>
       </Link>
       </Center>
 

@@ -76,6 +76,7 @@ const colors = {
     900: "#0B3C49",
   },
   badgeBlue: {
+    50: "#4D9DE0",
     100: "#4D9DE0",
     200: "#4D9DE0",
     300: "#4D9DE0",

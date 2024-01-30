@@ -36,6 +36,24 @@ export interface Database {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          email: string | null
+          id: number
+          name: string
+        }
+        Insert: {
+          email?: string | null
+          id?: number
+          name: string
+        }
+        Update: {
+          email?: string | null
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

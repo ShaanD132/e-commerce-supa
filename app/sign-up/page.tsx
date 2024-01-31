@@ -45,7 +45,11 @@ export default function SignUp() {
       loading: { title: 'Signing Up', colorScheme: 'blue'},
     })
 
-    setTimeout(() => router.push("/"), 1000)
+    console.log(error)
+    console.log(dbError)
+    if (!error && !dbError) {
+      setTimeout(() => router.push("/"), 1000)
+    }
   }
 
 

@@ -91,7 +91,7 @@ export default function Navbar() {
 
       <Center>
       <Link mr={5} mb={5} color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="link" href="/profile">
-        <Avatar name = {userName} src="" size="sm" bg="#4D9DE0" color="white"/>
+        <Avatar name = {userName} src="" size="sm" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white"/>
       </Link>
       </Center>
 

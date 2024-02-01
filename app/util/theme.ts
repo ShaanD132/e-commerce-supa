@@ -6,9 +6,6 @@ import {mode} from "@chakra-ui/theme-tools"
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      //FFFAFA
-      //F5F5F5
-      //FFFFF0
       bg: "#FFFAFA",
       color: "#090909"
     }

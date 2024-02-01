@@ -1,6 +1,6 @@
 "use client"
-import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, Center, useToast, Text, Flex, Container, Card, CardBody} from "@chakra-ui/react"
-import { InfoOutlineIcon, PlusSquareIcon, SmallAddIcon } from "@chakra-ui/icons"
+import {Button, Box, Image, Badge, Center, useToast, Text, Flex, Container, Card, CardBody, SimpleGrid} from "@chakra-ui/react"
+import { PlusSquareIcon } from "@chakra-ui/icons"
 import { ProductType } from "@/api/types"
 import { useCallback, useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
@@ -17,7 +17,7 @@ function ProductPage() {
     position: 'top',
   })
   const prodId = usePathname().replace("/products/", "")
-  const [prod, setProd] = useState<ProductType>({id: 0, image: "png", name: "Fetching", price: 100, quantity: 0, type: "Loading"})
+  const [prod, setProd] = useState<ProductType>({id: 0, image: "png", name: "Fetching", price: 100, quantity: 0, type: "Loading", description: ""})
   const [imageUrl, setImageUrl] = useState("")
 
   const getProduct = useCallback(async () => {
@@ -64,72 +64,73 @@ function ProductPage() {
   */
 
   return(
-    <Container maxW="container.xl">
-      <Flex px={30}>
+    <Container maxW="container.xl" mt={10}>
+      <SimpleGrid columns={2} px={30}>
         {/*Image + Card*/}
-        <Box w="100%">
           <Center>
-            <Card maxW="xl" backgroundColor="#171A21">
-              <Image src={imageUrl} />
-              <CardBody>
-              <Center>
-              <Button leftIcon={<PlusSquareIcon />} colorScheme="myPink" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
-              mt = {3}
-              onClick={async () => {
-                const { data: {session}} = await supabase.auth.getSession();
-                let addToCartPromise = new Promise((resolve, reject) => {})
-                if (session?.user) {
-                  addToCartPromise = new Promise((resolve, reject) => {
-                    setTimeout(() => resolve(200), 1000)
-                  })
-                }
-                else {
-                  addToCartPromise = new Promise((resolve, reject) => {
-                    setTimeout(() => reject(200), 1000)
-                  })
-                }
+            <Box as="span">
+              <Card maxW="xl" backgroundColor="#F8F8FF">
+                <Image src={imageUrl} />
+                <CardBody>
+                <Center>
+                <Button leftIcon={<PlusSquareIcon />} colorScheme="badgeDeepGreen" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
+                mt = {3}
+                onClick={async () => {
+                  const { data: {session}} = await supabase.auth.getSession();
+                  let addToCartPromise = new Promise((resolve, reject) => {})
+                  if (session?.user) {
+                    addToCartPromise = new Promise((resolve, reject) => {
+                      setTimeout(() => resolve(200), 1000)
+                    })
+                  }
+                  else {
+                    addToCartPromise = new Promise((resolve, reject) => {
+                      setTimeout(() => reject(200), 1000)
+                    })
+                  }
 
-                toast.promise(addToCartPromise, {
-                  success: { title: 'Added to Cart', colorScheme: 'green'},
-                  error: { title: 'Please Log In', colorScheme: 'orange'},
-                  loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
-                })
-              }}>Add to Cart</Button>
-              </Center>
-              </CardBody>
-            </Card>
+                  toast.promise(addToCartPromise, {
+                    success: { title: 'Added to Cart', colorScheme: 'green'},
+                    error: { title: 'Please Log In', colorScheme: 'orange'},
+                    loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
+                  })
+                }}>Add to Cart</Button>
+                </Center>
+                </CardBody>
+              </Card>
+            </Box>
           </Center>
-        </Box>
 
-        <Box w="100%">
           <Center>
-            <Box>
-              <Badge borderRadius="md" colorScheme={getTypeColor(prod.type)}>
+            <Box as='span'>
+              <Badge borderRadius="md" colorScheme={getTypeColor(prod.type)} fontSize={16}>
                 {prod.type}
               </Badge>
-              <Box pt={3} fontWeight="bold" fontSize="lg">
+              <Box pt={3} fontWeight="bold" fontSize="3xl" w={{base: 100, md: 300, xl: 500}}>
                 {prod.name}
               </Box>
 
-              <Box fontSize="md">
-                <Flex>
-                  <Text>
-                  ${prod.price} USD
+              <Box fontSize="xl" mt={2}>
+                <Text>
+                Price: ${prod.price} USD
+                </Text>
+
+                {(qty < 5) ?
+                (
+                  <Text color="red" ml={1} mt={2} fontWeight="bold">
+                  Buy Quick: Only {qty} left!
                   </Text>
-                  {(qty < 5) ?
-                  (
-                    <Text color="red" ml={1} fontWeight="bold">
-                    | only {qty} left
-                    </Text>
-                  ) :
-                  ("")}
-                </Flex>
+                ) :
+                ("")}
+              </Box>
+              {/*Needs responsive fix*/}
+              <Box fontSize="lg" mt={2} w={{base: 100, md: 300, xl: 500}}>
+                Description: {prod.description}
               </Box>
             </Box>
           </Center>
-        </Box>
 
-      </Flex>
+      </SimpleGrid>
     </Container>
   )
 }

@@ -93,8 +93,9 @@ function Product(props: ProductProps) {
               loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
             })
           }}
+          fontWeight="normal"
           >Add to Cart</Button>
-          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2}
+          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2} fontWeight="normal"
           onClick = {() => {
             router.push("/products/" + props.Product.id)
           }}

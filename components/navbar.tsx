@@ -96,7 +96,7 @@ export default function Navbar() {
       </Center>
 
       <Center>
-      <Button mr={5} mb={5} colorScheme="myPink" color="black" textAlign="center" onClick={buttonF} fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
+      <Button mr={5} mb={5} colorScheme="myPink" color="black" textAlign="center" fontWeight="normal" onClick={buttonF} fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
         {logText}
       </Button>
       </Center>

@@ -11,6 +11,7 @@ export interface Database {
     Tables: {
       products: {
         Row: {
+          description: string | null
           id: number
           image: string | null
           name: string
@@ -19,6 +20,7 @@ export interface Database {
           type: string | null
         }
         Insert: {
+          description?: string | null
           id?: number
           image?: string | null
           name: string
@@ -27,6 +29,7 @@ export interface Database {
           type?: string | null
         }
         Update: {
+          description?: string | null
           id?: number
           image?: string | null
           name?: string

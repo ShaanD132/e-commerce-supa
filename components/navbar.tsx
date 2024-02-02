@@ -57,22 +57,22 @@ export default function Navbar() {
 
   return(
     <Container maxW="container.xl" overflow="hidden">
-    <Flex pt={5} fontSize={{base: "15px", md: "18px", lg:"22px"}} position="fixed" backdropFilter='blur(10px)' borderBottom={3} maxW="container.xl" zIndex={20} width="100%" direction="row">
+    <Flex pt={5} fontSize={{base: "15px", md: "18px", lg:"22px"}} backdropFilter='blur(10px)' borderBottom={3} maxW="container.xl" zIndex={20} width="100%" direction="row">
       <Flex fontFamily="Overused-Grotesk" >
         <Center>
-        <Link href="/" mr={{base: 3, lg:8}} pb={5}>Home</Link>
+        <Link href="/" mr={{base: 3, lg:8}}>Home</Link>
         </Center>
 
         <Center>
-        <Link href="/products" mr={{base: 3, lg:8}} pb={5}>Products</Link>
+        <Link href="/products" mr={{base: 3, lg:8}}>Products</Link>
         </Center>
 
         <Center>
-        <Link href="/about" mr={{base: 3, lg:8}} pb={5}>About</Link>
+        <Link href="/about" mr={{base: 3, lg:8}}>About</Link>
         </Center>
 
         <Center>
-        <Link href="/contact" mr={{base: 3, lg:8}} pb={5}>Contact</Link>
+        <Link href="/contact" mr={{base: 3, lg:8}}>Contact</Link>
         </Center>
       </Flex>
 
@@ -80,17 +80,17 @@ export default function Navbar() {
 
       <Flex>
       <Center>
-        <Link href="#" mr={{base: 1, lg:4}} pb={5}>
+        <Link href="#" mr={{base: 1, lg:4}}>
           <Center>
-          <Button colorScheme="badgeBlue" color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
-              <Image src= {"/images/cart.png"} alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
+          <Button colorScheme="badgeBlue" color="white" textAlign="center" fontSize={{base:"11px", lg:"14px"}} pl={3} pr={4} variant="ghost">
+              <Image src= {"/images/cart.png"} alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}} />
           </Button>
           </Center>
         </Link>
       </Center>
 
       <Center>
-      <Link mr={{base: 8, lg: 10}} mb={5} color="black" textAlign="center" px={2} variant="link" href="/profile">
+      <Link mr={{base: 8, lg: 10}} color="black" textAlign="center" px={2} variant="link" href="/profile">
         <Center>
           <Avatar name = {userName} src="" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white" size={{base: "xs", lg:"sm"}}/>
         </Center>

@@ -1,5 +1,5 @@
 "use client"
-import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, Center, useToast, Text, Flex} from "@chakra-ui/react"
+import {Button, Box, Image, Badge, ButtonGroup, defineStyleConfig, defineStyle, Center, useToast, Text, Flex, Card} from "@chakra-ui/react"
 import { InfoOutlineIcon, PlusSquareIcon, SmallAddIcon } from "@chakra-ui/icons"
 import { ProductType} from "@/api/types"
 import { useCallback, useEffect, useState } from "react"
@@ -13,7 +13,7 @@ interface ProductProps {
 
 function Product(props: ProductProps) {
   const types = ["Podcast", "Book", "Tech"]
-  const colors = ["badgeDeepGreen", "badgePurple", "badgeBlue"]
+  const colors = ["green", "badgePurple", "badgeBlue"]
   const router = useRouter()
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
@@ -43,9 +43,9 @@ function Product(props: ProductProps) {
   }, [getImageUrl])
 
   return(
-    <Box boxShadow="lg" maxW={{base:"15em", lg:"sm"}} borderRadius="md">
+    <Card variant="outline" maxW={{base:"15em", lg:"sm"}} borderRadius="md" backgroundColor="#1b202b" color="#FFFAFA" borderColor="#1b202b">
       <Box pb={3}>
-        <Image src={imageUrl} borderRadius="md" alt={props.Product.name}/>
+        <Image src={imageUrl} alt={props.Product.name}/>
       </Box>
 
       <Box pt={2} pb={4} px={5}>
@@ -104,7 +104,7 @@ function Product(props: ProductProps) {
         </ButtonGroup>
         </Center>
       </Box>
-    </Box>
+    </Card>
   )
 }
 

@@ -28,7 +28,7 @@ export default  function Products() {
       <Center>
       <SimpleGrid columns={{sm:1, md:2, lg:3}} gap={10}>
       {products.map((prod) =>
-      <GridItem pt={5} key = {prod.id}>
+      <GridItem key = {prod.id}>
         <Product
         Product = {prod}
         />
@@ -38,7 +38,7 @@ export default  function Products() {
       </Center>
 
       <Center>
-      <Button mt={2} isLoading={isLoading} colorScheme='myPink' variant='ghost' fontSize={{base: "20px", lg: "30px"}}/>
+      <Button my={{base: 5, md: 10}} isLoading={isLoading} colorScheme='myPink' variant='ghost' fontSize={{base: "40px", lg: "60px"}}/>
       </Center>
     </Container>
   )

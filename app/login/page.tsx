@@ -14,6 +14,7 @@ export default function Login() {
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
+    isClosable: true,
   })
 
   const handleLogIn = async () => {
@@ -46,7 +47,9 @@ export default function Login() {
     })
     console.log(data.user)
     console.log(error)
-    setTimeout(() => router.push("/"), 1000)
+    if (success === true) {
+      setTimeout(() => router.push("/"), 1000)
+    }
   }
 
   return (

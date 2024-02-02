@@ -9,7 +9,7 @@ import { Database } from "@/api/database.types"
 
 function ProductPage() {
   const types = ["Podcast", "Book", "Tech"]
-  const colors = ["green", "purple", "blue"]
+  const colors = ["green", "badgePurple", "badgeBlue"]
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
@@ -68,11 +68,11 @@ function ProductPage() {
         {/*Image + Card*/}
           <Center>
             <Box as="span">
-              <Card maxW={{base: "lg", lg: "xl"}} backgroundColor="#F8F8FF">
+              <Card maxW={{base: "lg", lg: "xl"}} backgroundColor="#1b202b" color="#FFFAFA" borderColor="1b202b">
                 <Image src={imageUrl} />
                 <CardBody>
                 <Center>
-                <Button leftIcon={<PlusSquareIcon />} colorScheme="badgeDeepGreen" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
+                <Button leftIcon={<PlusSquareIcon />} colorScheme="badgePurple" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
                 mt = {3}
                 onClick={async () => {
                   const { data: {session}} = await supabase.auth.getSession();

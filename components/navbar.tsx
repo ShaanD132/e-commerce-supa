@@ -80,7 +80,7 @@ export default function Navbar() {
 
       <Flex>
       <Center>
-        <Link href="#" mr={4} pb={5}>
+        <Link href="#" mr={{base: 1, lg:4}} pb={5}>
           <Center>
           <Button colorScheme="badgeBlue" color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
               <Image src= {"/images/cart.png"} alt="cart" maxW={{base: "17px", md: "20px", lg:"28px"}}/>
@@ -90,8 +90,8 @@ export default function Navbar() {
       </Center>
 
       <Center>
-      <Link mr={5} mb={5} color="black" textAlign="center" fontSize={{base:"11px", lg:"14px"}} px={2} variant="link" href="/profile">
-        <Avatar name = {userName} src="" size="sm" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white"/>
+      <Link mr={{base: 8, lg: 5}} mb={5} color="black" textAlign="center" px={2} variant="link" href="/profile">
+        <Avatar name = {userName} src="" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white" size={{base: "xs", large:"sm"}}/>
       </Link>
       </Center>
 

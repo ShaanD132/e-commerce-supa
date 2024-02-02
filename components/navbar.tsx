@@ -90,8 +90,10 @@ export default function Navbar() {
       </Center>
 
       <Center>
-      <Link mr={{base: 8, lg: 5}} mb={5} color="black" textAlign="center" px={2} variant="link" href="/profile">
-        <Avatar name = {userName} src="" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white" size={{base: "xs", large:"sm"}}/>
+      <Link mr={{base: 8, lg: 10}} mb={5} color="black" textAlign="center" px={2} variant="link" href="/profile">
+        <Center>
+          <Avatar name = {userName} src="" bg={(userName !== "") ? ("#4D9DE0") : ("gray")} color="white" size={{base: "xs", lg:"sm"}}/>
+        </Center>
       </Link>
       </Center>
 

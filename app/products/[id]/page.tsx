@@ -7,14 +7,13 @@ import { usePathname } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Database } from "@/api/database.types"
 
-
-
 function ProductPage() {
   const types = ["Podcast", "Book", "Tech"]
   const colors = ["green", "purple", "blue"]
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
+    isClosable: true,
   })
   const prodId = usePathname().replace("/products/", "")
   const [prod, setProd] = useState<ProductType>({id: 0, image: "png", name: "Fetching", price: 100, quantity: 0, type: "Loading", description: ""})

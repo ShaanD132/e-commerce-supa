@@ -95,11 +95,6 @@ export default function Navbar() {
       </Link>
       </Center>
 
-      <Center>
-      <Button mr={5} mb={5} colorScheme="myPink" color="black" textAlign="center" fontWeight="normal" onClick={buttonF} fontSize={{base:"11px", lg:"14px"}} px={2} variant="ghost">
-        {logText}
-      </Button>
-      </Center>
       </Flex>
     </Flex>
   </Container>

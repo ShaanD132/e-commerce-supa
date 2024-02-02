@@ -18,6 +18,7 @@ function Product(props: ProductProps) {
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
+    isClosable: true,
   })
   const qty = (props.Product.quantity != null) ? props.Product.quantity : 0
   const [imageUrl, setImageUrl] = useState("")
@@ -93,9 +94,9 @@ function Product(props: ProductProps) {
               loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
             })
           }}
-          fontWeight="normal"
+          fontWeight="bold"
           >Add to Cart</Button>
-          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2} fontWeight="normal"
+          <Button leftIcon={<InfoOutlineIcon />}  colorScheme="myPink" color="white" fontSize={{base:"11px", lg:"14px"}} px={2} fontWeight="bold"
           onClick = {() => {
             router.push("/products/" + props.Product.id)
           }}

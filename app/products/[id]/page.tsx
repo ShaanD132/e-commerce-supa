@@ -65,11 +65,11 @@ function ProductPage() {
 
   return(
     <Container maxW="container.xl" mt={10}>
-      <SimpleGrid columns={2} px={30}>
+      <SimpleGrid columns={{base: 1, lg: 2}} px={30}>
         {/*Image + Card*/}
           <Center>
             <Box as="span">
-              <Card maxW="xl" backgroundColor="#F8F8FF">
+              <Card maxW={{base: "lg", lg: "xl"}} backgroundColor="#F8F8FF">
                 <Image src={imageUrl} />
                 <CardBody>
                 <Center>
@@ -102,15 +102,15 @@ function ProductPage() {
           </Center>
 
           <Center>
-            <Box as='span'>
-              <Badge borderRadius="md" colorScheme={getTypeColor(prod.type)} fontSize={16}>
+            <Box as="span" py={{base: 3, lg: 0}}>
+              <Badge borderRadius="md" colorScheme={getTypeColor(prod.type)} fontSize={{base: 12, lg: 16}}>
                 {prod.type}
               </Badge>
-              <Box pt={3} fontWeight="bold" fontSize="3xl" w={{base: 100, md: 300, xl: 500}}>
+              <Box pt={3} fontWeight="bold" fontSize={{base: "xl", lg:"3xl"}} w={{base: 300, md: 300, xl: 500}}>
                 {prod.name}
               </Box>
 
-              <Box fontSize="xl" mt={2}>
+              <Box fontSize={{base: "xl", lg:"3xl"}} mt={2}>
                 <Text>
                 Price: ${prod.price} USD
                 </Text>
@@ -118,13 +118,13 @@ function ProductPage() {
                 {(qty < 5) ?
                 (
                   <Text color="red" ml={1} mt={2} fontWeight="bold">
-                  Buy Quick: Only {qty} left!
+                  Low Stock: {qty} left!
                   </Text>
                 ) :
                 ("")}
               </Box>
               {/*Needs responsive fix*/}
-              <Box fontSize="lg" mt={2} w={{base: 100, md: 300, xl: 500}}>
+              <Box fontSize={{base: "sm", lg: "lg"}} mt={2} w={{base: 300, md: 300, xl: 500}}>
                 Description: {prod.description}
               </Box>
             </Box>

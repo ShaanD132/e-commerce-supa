@@ -12,7 +12,7 @@ interface ProductProps {
 }
 
 function Product(props: ProductProps) {
-  const types = ["Podcast", "Book", "Tech"]
+  const types = ["Vegetable", "Berries", "Fruit"]
   const colors = ["green", "badgePurple", "badgeBlue"]
   const router = useRouter()
   const supabase = createClientComponentClient<Database>({isSingleton: true})
@@ -59,9 +59,14 @@ function Product(props: ProductProps) {
         <Box fontSize="md">
           <Flex>
             <Text>
-            ${props.Product.price} USD
+              Price: ${props.Product.price} HKD
             </Text>
-            {(qty < 5) ?
+
+            <Text fontSize="sm" ml={1}mt={0.5}>
+              per kg
+            </Text>
+
+            {(qty < 10) ?
             (
               <Text color="red" ml={1} fontWeight="bold">
                | only {qty} left

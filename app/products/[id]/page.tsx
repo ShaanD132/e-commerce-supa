@@ -16,7 +16,7 @@ function ProductPage() {
     isClosable: true,
   })
   const prodId = usePathname().replace("/products/", "")
-  const [prod, setProd] = useState<ProductType>({id: 0, image: "png", name: "Fetching", price: 100, quantity: 0, type: "Loading", description: ""})
+  const [prod, setProd] = useState<ProductType>({id: 0, image: "png", name: "Fetching", price: 100, quantity: 0, type: "Loading", description: "", qty_sold: 0})
   const [imageUrl, setImageUrl] = useState("")
 
   const getProduct = useCallback(async () => {
@@ -48,19 +48,6 @@ function ProductPage() {
     }
     return "gray"
   }
-  /*
-  onClick={() => {
-    const addToCartPromise = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(200), 1000)
-    })
-
-    toast.promise(addToCartPromise, {
-      success: { title: 'Added to Cart', colorScheme: 'green'},
-      error: { title: 'Promise rejected', colorScheme: 'red'},
-      loading: { title: 'Adding to Cart', colorScheme: 'cyan'},
-    })
-  }}
-  */
 
   return(
     <Container maxW="container.xl" mt={10}>
@@ -110,11 +97,14 @@ function ProductPage() {
               </Box>
 
               <Box fontSize={{base: "xl", lg:"3xl"}} mt={2}>
-                <Text>
-                Price: ${prod.price} USD
+                <Text as="span">
+                Price: ${prod.price} HKD
+                </Text>
+                <Text as="span" fontSize={{base: "lg", lg:"xl"}}>
+                  per kg
                 </Text>
 
-                {(qty < 5) ?
+                {(qty < 10) ?
                 (
                   <Text color="red" ml={1} mt={2} fontWeight="bold">
                   Low Stock: {qty} left!

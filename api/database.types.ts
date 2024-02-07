@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       products: {
@@ -16,6 +16,7 @@ export interface Database {
           image: string | null
           name: string
           price: number | null
+          qty_sold: number | null
           quantity: number | null
           type: string | null
         }
@@ -25,6 +26,7 @@ export interface Database {
           image?: string | null
           name: string
           price?: number | null
+          qty_sold?: number | null
           quantity?: number | null
           type?: string | null
         }
@@ -34,6 +36,7 @@ export interface Database {
           image?: string | null
           name?: string
           price?: number | null
+          qty_sold?: number | null
           quantity?: number | null
           type?: string | null
         }

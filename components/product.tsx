@@ -13,7 +13,7 @@ interface ProductProps {
 
 function Product(props: ProductProps) {
   const types = ["Vegetable", "Berries", "Fruit"]
-  const colors = ["green", "badgePurple", "badgeBlue"]
+  const colors = ["badgeDeepGreen", "badgePurple", "badgeBlue"]
   const router = useRouter()
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
@@ -43,8 +43,8 @@ function Product(props: ProductProps) {
   }, [getImageUrl])
 
   return(
-    <Card variant="outline" maxW={{base:"15em", lg:"sm"}} borderRadius="md" backgroundColor="#1b202b" color="#FFFAFA" borderColor="#1b202b">
-      <Box pb={3}>
+    <Card variant="outline" overflow="hidden" maxW={{base:"15em", lg:"sm"}} borderRadius="md" backgroundColor="#F9F4F5" color="myBlack.900" boxShadow="md">
+      <Box pb={3} >
         <Image src={imageUrl} alt={props.Product.name}/>
       </Box>
 
@@ -62,23 +62,23 @@ function Product(props: ProductProps) {
               Price: ${props.Product.price} HKD
             </Text>
 
-            <Text fontSize="sm" ml={1}mt={0.5}>
-              per kg
-            </Text>
-
             {(qty < 10) ?
             (
               <Text color="red" ml={1} fontWeight="bold">
                | only {qty} left
               </Text>
             ) :
-            ("")}
+            (
+              <Text fontSize="sm" ml={1}mt={0.5}>
+                per kg
+              </Text>
+            )}
           </Flex>
         </Box>
 
         <Center>
         <ButtonGroup spacing={{base: 3, lg: 6}} pt={3} zIndex={0}>
-          <Button leftIcon={<PlusSquareIcon />} colorScheme="myBlack" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
+          <Button leftIcon={<PlusSquareIcon />} colorScheme="myGreen" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
           onClick={async () => {
             const { data: {session}} = await supabase.auth.getSession();
             let addToCartPromise = new Promise((resolve, reject) => {})

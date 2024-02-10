@@ -8,8 +8,8 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Database } from "@/api/database.types"
 
 function ProductPage() {
-  const types = ["Podcast", "Book", "Tech"]
-  const colors = ["green", "badgePurple", "badgeBlue"]
+  const types = ["Vegetable", "Berries", "Fruit"]
+  const colors = ["badgeDeepGreen", "badgePurple", "badgeBlue"]
   const supabase = createClientComponentClient<Database>({isSingleton: true})
   const toast = useToast({
     position: 'top',
@@ -55,11 +55,11 @@ function ProductPage() {
         {/*Image + Card*/}
           <Center>
             <Box as="span">
-              <Card maxW={{base: "lg", lg: "xl"}} backgroundColor="#1b202b" color="#FFFAFA" borderColor="1b202b">
+              <Card maxW={{base: "lg", lg: "xl"}} backgroundColor="#F9F4F5" color="#FFFAFA" boxShadow="md">
                 <Image src={imageUrl} />
                 <CardBody>
                 <Center>
-                <Button leftIcon={<PlusSquareIcon />} colorScheme="badgePurple" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
+                <Button leftIcon={<PlusSquareIcon />} colorScheme="myGreen" color="white" variant="solid" fontSize={{base:"11px", lg:"14px"}} px={2}
                 mt = {3}
                 onClick={async () => {
                   const { data: {session}} = await supabase.auth.getSession();
@@ -100,7 +100,7 @@ function ProductPage() {
                 <Text as="span">
                 Price: ${prod.price} HKD
                 </Text>
-                <Text as="span" fontSize={{base: "lg", lg:"xl"}}>
+                <Text as="span" ml={1} fontSize={{base: "lg", lg:"xl"}}>
                   per kg
                 </Text>
 

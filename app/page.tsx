@@ -26,18 +26,18 @@ export default function Home() {
   return (
     <Container maxW="container.xl" overflow="hidden">
       <Center>
-        <Card maxW="container.xl" backgroundColor="#0B3C49">
-          <CardBody p={3}>
+        <Card maxW="container.xl" backgroundColor="myGreen.900">
+          <CardBody p={1}>
           <Center>
-            <Image src="/images/banner-1.png" w="100%"/>
+            <Image borderRadius="sm" src="/images/banner-1.png" w="100%"/>
           </Center>
           </CardBody>
         </Card>
       </Center>
 
-      <Box my={20}>
+      <Box mt={20}>
         <Heading as="h1" fontFamily="Helvetica">Best-Selling Products</Heading>
-        <Container maxW="100%" overflow="hidden" mt={5}>
+        <Container maxW="100%" overflow="hidden" mt={10}>
         <Center>
           <SimpleGrid columns={{sm:1, md:2, lg:3}} gap={10}>
           {products.slice(0,3).map((prod) =>
